@@ -44,7 +44,8 @@ namespace APIAcoes.Controllers
             var watch = new Stopwatch();
             watch.Start();
 
-            var conteudoAcao = JsonSerializer.Serialize(acao);
+            var conteudoAcao = JsonSerializer.Serialize(acao,
+                new () { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
             _logger.LogInformation($"Dados: {conteudoAcao}");
 
             string topic = _configuration["ApacheKafka:Topic"];
